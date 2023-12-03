@@ -1,22 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import DashboardScreen from './screens/DashboardScreen';
+import { Platform, StyleSheet, View } from 'react-native';
+import "react-native-gesture-handler";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DashboardScreen from './screens/DashboardScreen';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 
 export default function App() {
   return (
-    <View className="flex-1">
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Dashboard" component={DashboardScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <>
+    <StatusBar style='auto' />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </>
   );
 }
 
