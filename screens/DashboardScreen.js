@@ -27,6 +27,14 @@ export default function DashboardScreen() {
       {/* Static header */}
       <Header />
       <ScrollView>
+        <Text className="font-bold mt-6" style={{ fontSize: 28 }}>
+          <Text className="font-semibold" style={{ fontSize: 25 }}>
+            Hello, {'\n'}
+          </Text>
+          <Text>
+            Harini Ramaprasad
+          </Text>
+        </Text>
         <LinearGradient
           colors={['#0a9dff', '#54bbff']}
           className="mt-6 rounded-3xl"
@@ -52,7 +60,7 @@ export default function DashboardScreen() {
             }}
           />
           <Pressable
-          className="py-4"
+            className="py-4"
           >
             <Text className="text-center text-white font-bold">View Profile</Text>
           </Pressable>
