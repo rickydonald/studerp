@@ -65,36 +65,6 @@ export default function DashboardScreen() {
             </TouchableOpacity>
           </View>
         </View>
-        <LinearGradient
-          colors={['#0a9dff', '#54bbff']}
-          className="mt-6 rounded-3xl"
-        >
-          <View className="py-4">
-            <Text
-              className="text-center font-medium text-white"
-              style={{ fontSize: 12, marginBottom: 5 }}
-            >
-              ON GOING
-            </Text>
-            <Text
-              className="text-center font-bold text-white"
-              style={{ fontSize: 20 }}
-            >
-              B.Sc. Computer Science
-            </Text>
-          </View>
-          <View
-            style={{
-              borderBottomColor: 'white',
-              borderBottomWidth: StyleSheet.hairlineWidth,
-            }}
-          />
-          <Pressable
-            className="py-4"
-          >
-            <Text className="text-center text-white font-bold">View Profile</Text>
-          </Pressable>
-        </LinearGradient>
       </ScrollView>
     </SafeAreaView>
   )
