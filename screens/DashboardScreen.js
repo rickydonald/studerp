@@ -1,10 +1,11 @@
-import { View, Text, Image, ScrollView, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
+import { View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
 import { LinearGradient } from 'expo-linear-gradient'
+import { appleSystemGrayLight5, appleSystemGrayLight6 } from '../src/Config';
 
 
 export default function DashboardScreen() {
@@ -23,18 +24,47 @@ export default function DashboardScreen() {
   }, []);
 
   return (
-    <SafeAreaView className="px-3 bg-white flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Static header */}
       <Header />
-      <ScrollView>
-        <Text className="font-bold mt-6" style={{ fontSize: 28 }}>
-          <Text className="font-semibold" style={{ fontSize: 25 }}>
-            Hello, {'\n'}
-          </Text>
-          <Text>
-            Harini Ramaprasad
-          </Text>
-        </Text>
+      <ScrollView className="" style={{ backgroundColor: appleSystemGrayLight6 }}>
+        <View
+          className="bg-white py-5 px-5 flex-1"
+        >
+          <View className="flex-row items-center justify-between">
+            <View>
+              <Text className="font-bold" style={{ fontSize: 25 }}>
+                Ricky Donald
+              </Text>
+              <Text style={{ fontSize: 18 }} className="text-gray-600 mt-3 font-semibold">
+                21PEN843
+              </Text>
+              <Text style={{ fontSize: 18 }} className="text-gray-600 mt-2 font-semibold">
+                B.Sc. Computer Science
+              </Text>
+            </View>
+            <Image
+              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs632.jpg" }}
+              width={90}
+              height={100}
+              className="rounded-xl"
+            />
+          </View>
+          <View className="pt-5 flex-row items-center justify-stretch gap-2">
+            <TouchableOpacity
+              className="flex-1"
+              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+            >
+              <Text className="text-center font-semibold">View Profile</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="flex-1"
+              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+            >
+              <Text className="text-center font-semibold">Preferences</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <LinearGradient
           colors={['#0a9dff', '#54bbff']}
           className="mt-6 rounded-3xl"
@@ -50,7 +80,7 @@ export default function DashboardScreen() {
               className="text-center font-bold text-white"
               style={{ fontSize: 20 }}
             >
-              M.A. English Literature
+              B.Sc. Computer Science
             </Text>
           </View>
           <View

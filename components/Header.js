@@ -5,7 +5,7 @@ import * as Icons from 'react-native-heroicons/outline'
 
 export default function Header() {
     return (
-        <View className="flex-row items-center justify-between">
+        <View className="flex-row items-center px-3 pb-3 justify-between bg-white">
             <TouchableOpacity>
                 <Image
                     source={{ uri: "https://sjctni.edu/images/SPhotos/21/21pen843.jpg" }}
