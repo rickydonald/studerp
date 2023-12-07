@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
 import { LinearGradient } from 'expo-linear-gradient'
-import { appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen } from '../src/Config';
+import { appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemRed } from '../src/Config';
 
 
 export default function DashboardScreen() {
@@ -66,24 +66,24 @@ export default function DashboardScreen() {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         {/* Today's Attendance */}
         <View className="bg-white p-3 m-3 rounded-xl">
           <Text className="mb-4 font-semibold" style={{ fontSize: 20 }}>Today's Attendance</Text>
           <View className="flex-row items-center justify-between">
-            <View style={attendanceMicroBoxStyle.container}>
+            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
               <Text style={attendanceMicroBoxStyle.text}>1</Text>
             </View>
-            <View style={attendanceMicroBoxStyle.container}>
+            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
               <Text style={attendanceMicroBoxStyle.text}>2</Text>
             </View>
-            <View style={attendanceMicroBoxStyle.container}>
+            <View style={[{ backgroundColor: appleSystemRed } ,attendanceMicroBoxStyle.container]}>
               <Text style={attendanceMicroBoxStyle.text}>3</Text>
             </View>
-            <View style={attendanceMicroBoxStyle.container}>
+            <View style={[{ backgroundColor: appleSystemRed } ,attendanceMicroBoxStyle.container]}>
               <Text style={attendanceMicroBoxStyle.text}>4</Text>
             </View>
-            <View style={attendanceMicroBoxStyle.container}>
+            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
               <Text style={attendanceMicroBoxStyle.text}>5</Text>
             </View>
           </View>
@@ -101,7 +101,6 @@ export default function DashboardScreen() {
 
 const attendanceMicroBoxStyle = StyleSheet.create({
   container: {
-    backgroundColor: appleSystemGreen,
     padding: 10,
     borderRadius: 10,
     width: 50,
