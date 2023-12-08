@@ -1,11 +1,13 @@
-import { View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity, Touchable } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
 import { LinearGradient } from 'expo-linear-gradient'
-import { appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemRed } from '../src/Config';
+import { appleSystemBlue, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemGreenDark, appleSystemRed, appleSystemRedDark } from '../src/Config';
+import HorizontalLine from '../components/HorizontalLine';
+import PaymentCard from '../components/PaymentCard';
 
 
 export default function DashboardScreen() {
@@ -27,7 +29,7 @@ export default function DashboardScreen() {
     <SafeAreaView className="flex-1 bg-white">
       {/* Static header */}
       <Header />
-      <ScrollView className="" style={{ backgroundColor: appleSystemGrayLight6 }}>
+      <ScrollView className="flex-1" style={{ backgroundColor: appleSystemGrayLight6 }}>
         {/* Dashboard Card */}
         <View
           className="bg-white py-5 px-5 flex-1"
@@ -68,31 +70,82 @@ export default function DashboardScreen() {
         </View>
 
         {/* Today's Attendance */}
-        <View className="bg-white p-3 m-3 rounded-xl">
-          <Text className="mb-4 font-semibold" style={{ fontSize: 20 }}>Today's Attendance</Text>
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
-              <Text style={attendanceMicroBoxStyle.text}>1</Text>
-            </View>
-            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
-              <Text style={attendanceMicroBoxStyle.text}>2</Text>
-            </View>
-            <View style={[{ backgroundColor: appleSystemRed } ,attendanceMicroBoxStyle.container]}>
-              <Text style={attendanceMicroBoxStyle.text}>3</Text>
-            </View>
-            <View style={[{ backgroundColor: appleSystemRed } ,attendanceMicroBoxStyle.container]}>
-              <Text style={attendanceMicroBoxStyle.text}>4</Text>
-            </View>
-            <View style={[{ backgroundColor: appleSystemGreen } ,attendanceMicroBoxStyle.container]}>
-              <Text style={attendanceMicroBoxStyle.text}>5</Text>
-            </View>
+        <View className="bg-white mx-3 my-6 rounded-xl">
+          <View className="p-3 flex-row items-center justify-between border-b border-b-slate-300">
+            <Text className="font-bold" style={{ fontSize: 22 }}>Today's Attendance</Text>
+            <TouchableOpacity
+              className=""
+            >
+              <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show in Detail</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-              className="flex-1 mt-5"
+          <View className="p-3">
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}>
+                <Text style={attendanceMicroBoxStyle.text}>I</Text>
+              </View>
+              <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}>
+                <Text style={attendanceMicroBoxStyle.text}>II</Text>
+              </View>
+              <View style={[{ backgroundColor: appleSystemRed }, attendanceMicroBoxStyle.container]}>
+                <Text style={attendanceMicroBoxStyle.text}>III</Text>
+              </View>
+              <View style={[{ backgroundColor: appleSystemRed }, attendanceMicroBoxStyle.container]}>
+                <Text style={attendanceMicroBoxStyle.text}>IV</Text>
+              </View>
+              <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}>
+                <Text style={attendanceMicroBoxStyle.text}>V</Text>
+              </View>
+            </View>
+            {/* <TouchableOpacity
+              className="mt-4"
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
             >
               <Text className="text-center font-semibold">Show Attendance</Text>
+            </TouchableOpacity> */}
+          </View>
+        </View>
+
+        {/* Payments */}
+        <View className="bg-white rounded-xl mx-3 mt-0 mb-6">
+          <View className="p-3 flex-row items-center justify-between border-b border-b-slate-300">
+            <Text className="font-bold" style={{ fontSize: 22 }}>Fees & Dues</Text>
+            <TouchableOpacity
+              className=""
+            >
+              <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show All</Text>
             </TouchableOpacity>
+          </View>
+          <View className="p-3">
+            <PaymentCard
+              paymentInfo="College Fees S2 VI Sem APR 2024"
+              paymentAmount="₹ 15,240"
+              buttonText="Pay Now"
+              buttonAction={() => { }}
+            />
+            <HorizontalLine />
+            <PaymentCard
+              paymentInfo="EXAM FEE S2 V SEM NOV 2023"
+              paymentAmount="₹ 1,050"
+              buttonText="Pay Now"
+              buttonAction={() => { }}
+            />
+          </View>
+        </View>
+
+        {/* Academics */}
+        <View className="bg-white rounded-xl mx-3 mt-0 mb-6">
+          <View className="p-3 flex-row items-center justify-between border-b border-b-slate-300">
+            <Text className="font-bold" style={{ fontSize: 22 }}>Academics</Text>
+            <TouchableOpacity
+              className=""
+            >
+              <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show All</Text>
+            </TouchableOpacity>
+          </View>
+          <View className="p-3">
+            
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

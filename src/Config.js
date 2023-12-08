@@ -6,7 +6,7 @@ export const appleSystemGrayLight3 = "rgb(199, 199, 204)";
 export const appleSystemGrayLight4 = "rgb(209, 209, 214)";
 export const appleSystemGrayLight5 = "rgb(229, 229, 234)";
 export const appleSystemGrayLight6 = "rgb(242, 242, 247)";
-// System RGB Colors
+// System RGB Colors Light
 export const appleSystemRed = "rgb(255, 59, 48)";
 export const appleSystemOrange = "rgb(255, 149, 0)";
 export const appleSystemYellow = "rgb(255, 204, 0)";
@@ -15,6 +15,15 @@ export const appleSystemTealBlue = "rgb(90, 200, 250)";
 export const appleSystemBlue = "rgb(0, 122, 255)";
 export const appleSystemPurple = "rgb(88, 86, 214)";
 export const appleSystemPink = "rgb(255, 45, 85)";
+// System RGB Colors Dark
+export const appleSystemRedDark = "rgb(255, 69, 58)";
+export const appleSystemOrangeDark = "rgb(255, 159, 10)";
+export const appleSystemYellowDark = "rgb(255, 214, 10)";
+export const appleSystemGreenDark = "rgb(48, 209, 88)";
+export const appleSystemTealBlueDark = "rgb(100, 210, 255)";
+export const appleSystemBlueDark = "rgb(10, 132, 255)";
+export const appleSystemPurpleDark = "rgb(94, 92, 230)";
+export const appleSystemPinkDark = "rgb(255, 55, 95)";
 // System Grayscale Colors
 export const appleSystemGray2 = "rgb(174, 174, 178)";
 export const appleSystemGray3 = "rgb(199, 199, 204)";

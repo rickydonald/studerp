@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React from 'react'
 
 import * as Icons from 'react-native-heroicons/outline'
@@ -8,7 +8,7 @@ export default function Header() {
         <View className="flex-row items-center px-3 pb-3 justify-between bg-white">
             <TouchableOpacity>
                 <Image
-                    source={{ uri: "https://sjctni.edu/images/SPhotos/21/21pen843.jpg" }}
+                    source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs632.jpg" }}
                     width={45}
                     height={45}
                     className="rounded-full mr-2"
