@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
 import { LinearGradient } from 'expo-linear-gradient'
-import { appleSystemBlue, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemGreenDark, appleSystemRed, appleSystemRedDark } from '../src/Config';
+import { appleSystemBlue, appleSystemFillGray10, appleSystemGray2, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemGreenDark, appleSystemRed, appleSystemRedDark } from '../src/Config';
 import HorizontalLine from '../components/HorizontalLine';
 import PaymentCard from '../components/PaymentCard';
 
@@ -144,7 +144,8 @@ export default function DashboardScreen() {
             </TouchableOpacity>
           </View>
           <View className="p-3">
-            
+            <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 12, color: appleSystemFillGray10 }}>Current CGPA</Text>
+            <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.9</Text>
           </View>
         </View>
       </ScrollView>

@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DashboardScreen from './screens/DashboardScreen';
 import * as IconsOutline from 'react-native-heroicons/outline';
 import * as IconsSolid from 'react-native-heroicons/solid';
+import AttendanceScreen from './screens/AttendanceScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,18 @@ export default function App() {
               }
             }}
             name="Dashboard" component={AuthStack}
+          />
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return focused ? (
+                  <IconsSolid.IdentificationIcon />
+                ) : (
+                  <IconsOutline.IdentificationIcon />
+                )
+              }
+            }}
+            name="Attendance" component={AttendanceScreen}
           />
         </Tab.Navigator>
       </NavigationContainer>
