@@ -11,6 +11,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import * as IconsOutline from 'react-native-heroicons/outline';
 import * as IconsSolid from 'react-native-heroicons/solid';
 import AttendanceScreen from './screens/AttendanceScreen';
+import AcademicsScreen from './screens/AcademicsScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,6 +57,18 @@ export default function App() {
               }
             }}
             name="Attendance" component={AttendanceScreen}
+          />
+          <Tab.Screen
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return focused ? (
+                  <IconsSolid.AcademicCapIcon />
+                ) : (
+                  <IconsOutline.AcademicCapIcon />
+                )
+              }
+            }}
+            name="Academics" component={AcademicsScreen}
           />
         </Tab.Navigator>
       </NavigationContainer>

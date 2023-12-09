@@ -143,9 +143,19 @@ export default function DashboardScreen() {
               <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show All</Text>
             </TouchableOpacity>
           </View>
-          <View className="p-3">
-            <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 12, color: appleSystemFillGray10 }}>Current CGPA</Text>
-            <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.9</Text>
+          <View className="p-3 flex-row items-center justify-around">
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current CGPA</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.9</Text>
+            </View>
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current SGPA</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.6</Text>
+            </View>
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Total Papers</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>7</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
