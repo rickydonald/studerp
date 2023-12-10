@@ -153,8 +153,8 @@ export default function DashboardScreen() {
               <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.6</Text>
             </View>
             <View>
-              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Total Papers</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>7</Text>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>BACKLOGS</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>0</Text>
             </View>
           </View>
         </View>
