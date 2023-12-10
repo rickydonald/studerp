@@ -7,15 +7,25 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import DashboardScreen from './screens/DashboardScreen';
 import * as IconsOutline from 'react-native-heroicons/outline';
 import * as IconsSolid from 'react-native-heroicons/solid';
+
+/** Screens */
+import DashboardScreen from './screens/DashboardScreen';
 import AttendanceScreen from './screens/AttendanceScreen';
 import AcademicsScreen from './screens/AcademicsScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const LoginStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={LoginScreen} />
+    </Stack.Navigator>
+  );
+}
 const AuthStack = () => {
   return (
     <Stack.Navigator>
