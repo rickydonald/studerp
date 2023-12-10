@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity, Touchable } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
@@ -24,6 +24,21 @@ export default function DashboardScreen() {
       },
     });
   }, []);
+
+  const [currentHour, setCurrentHour] = useState(0);
+
+  // Temporary Get Current Hour
+  useEffect(() => {
+    fetch('https://mail.sjctni.edu:8085/atte/getcurrenthour.php')
+    .then((response) => {
+      if (response.data === undefined) {
+        setCurrentHour(4);
+      } else {
+        setCurrentHour(response.data);
+      }
+    })
+    .catch((error) => console.error(error))
+  } ,[])
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
@@ -56,9 +71,9 @@ export default function DashboardScreen() {
           <View className="pt-5 flex-row items-center justify-stretch gap-2">
             <TouchableOpacity
               className="flex-1"
-              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+              style={{ backgroundColor: appleSystemBlue, padding: 10, borderRadius: 10 }}
             >
-              <Text className="text-center font-semibold">View Profile</Text>
+              <Text className="text-white text-center font-semibold">View Profile</Text>
             </TouchableOpacity>
             <TouchableOpacity
               className="flex-1"
@@ -66,6 +81,20 @@ export default function DashboardScreen() {
             >
               <Text className="text-center font-semibold">Preferences</Text>
             </TouchableOpacity>
+          </View>
+          <View className="mt-6 flex-row items-center justify-around">
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Day Order</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>E2</Text>
+            </View>
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current Hour</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>{ currentHour }</Text>
+            </View>
+            <View>
+              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current Shift</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>Shift 2</Text>
+            </View>
           </View>
         </View>
 
