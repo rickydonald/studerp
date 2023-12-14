@@ -32,12 +32,12 @@ export default function DashboardScreen() {
     fetch('https://mail.sjctni.edu:8085/atte/getcurrenthour.php')
     .then((response) => {
       if (response.data === undefined) {
-        setCurrentHour(4);
+        setCurrentHour("Nil");
       } else {
         setCurrentHour(response.data);
       }
     })
-    .catch((error) => console.error(error))
+    .catch((error) => console.error(error));
   } ,[])
 
   return (
