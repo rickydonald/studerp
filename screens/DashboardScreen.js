@@ -55,7 +55,7 @@ export default function DashboardScreen() {
                 Ricky Donald
               </Text>
               <Text style={{ fontSize: 18 }} className="text-gray-600 mt-3 font-semibold">
-                21PEN843
+                21UCS632
               </Text>
               <Text style={{ fontSize: 18 }} className="text-gray-600 mt-2 font-semibold">
                 B.Sc. Computer Science

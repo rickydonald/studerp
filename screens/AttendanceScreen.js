@@ -40,8 +40,6 @@ export default function AttendanceScreen() {
         <View>
           <Calendar
             style={{
-              borderWidth: 1,
-              borderColor: 'gray',
               height: 350
             }}
             // Specify the current date

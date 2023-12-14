@@ -32,12 +32,6 @@ export default function AttendanceCard() {
                         <Text style={attendanceMicroBoxStyle.text}>V</Text>
                     </View>
                 </View>
-                {/* <TouchableOpacity
-              className="mt-4"
-              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
-            >
-              <Text className="text-center font-semibold">Show Attendance</Text>
-            </TouchableOpacity> */}
             </View>
         </View>
     )
