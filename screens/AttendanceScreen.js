@@ -1,10 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { useNavigation } from '@react-navigation/native';
 
 export default function AttendanceScreen() {
+
+  const navigation = useNavigation();
+
   return (
-    <View>
+    <SafeAreaView>
       <Text>AttendanceScreen</Text>
-    </View>
+      <Button title='Profile' onPress={() => navigation.navigate('Profile')} />
+    </SafeAreaView>
   )
 }

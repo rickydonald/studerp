@@ -3,7 +3,7 @@ import React from 'react'
 
 import * as Icons from 'react-native-heroicons/outline'
 
-export default function Header() {
+export default function Header({ screenName }) {
     return (
         <View className="flex-row items-center px-3 pb-3 justify-between bg-white">
             <TouchableOpacity>
@@ -14,7 +14,7 @@ export default function Header() {
                     className="rounded-full mr-2"
                 />
             </TouchableOpacity>
-            <Text className="font-bold" style={{ fontSize: 20 }}>Dashboard</Text>
+            <Text className="font-bold" style={{ fontSize: 20 }}>{ screenName }</Text>
             <TouchableOpacity
                 className="bg-gray-200 rounded-full"
                 style={{ padding: 10 }}

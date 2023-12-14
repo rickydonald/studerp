@@ -15,6 +15,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import AttendanceScreen from './screens/AttendanceScreen';
 import AcademicsScreen from './screens/AcademicsScreen';
 import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,7 @@ const AuthStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={DashboardScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }

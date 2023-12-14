@@ -43,7 +43,7 @@ export default function DashboardScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       {/* Static header */}
-      <Header />
+      <Header screenName={"Dashboard"} />
       <ScrollView className="flex-1" style={{ backgroundColor: appleSystemGrayLight6 }}>
         {/* Dashboard Card */}
         <View
@@ -70,6 +70,7 @@ export default function DashboardScreen() {
           </View>
           <View className="pt-5 flex-row items-center justify-stretch gap-2">
             <TouchableOpacity
+              onPress={() => navigation.navigate('Profile')}
               className="flex-1"
               style={{ backgroundColor: appleSystemBlue, padding: 10, borderRadius: 10 }}
             >
