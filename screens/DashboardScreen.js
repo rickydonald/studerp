@@ -8,6 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { appleSystemBlue, appleSystemFillGray10, appleSystemGray2, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemGreenDark, appleSystemRed, appleSystemRedDark } from '../src/Config';
 import HorizontalLine from '../components/HorizontalLine';
 import PaymentCard from '../components/PaymentCard';
+import RegularCard from '../components/RegularCard';
 
 
 export default function DashboardScreen() {
@@ -30,15 +31,15 @@ export default function DashboardScreen() {
   // Temporary Get Current Hour
   useEffect(() => {
     fetch('https://mail.sjctni.edu:8085/atte/getcurrenthour.php')
-    .then((response) => {
-      if (response.data === undefined) {
-        setCurrentHour("Nil");
-      } else {
-        setCurrentHour(response.data);
-      }
-    })
-    .catch((error) => console.error(error));
-  } ,[])
+      .then((response) => {
+        if (response.data === undefined) {
+          setCurrentHour("Nil");
+        } else {
+          setCurrentHour(response.data);
+        }
+      })
+      .catch((error) => console.error(error));
+  }, [])
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
@@ -90,7 +91,7 @@ export default function DashboardScreen() {
             </View>
             <View>
               <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current Hour</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>{ currentHour }</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>{currentHour}</Text>
             </View>
             <View>
               <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current Shift</Text>
@@ -137,57 +138,55 @@ export default function DashboardScreen() {
         </View>
 
         {/* Payments */}
-        <View className="bg-white rounded-xl mx-3 mt-0 mb-6">
-          <View className="p-3 flex-row items-center justify-between border-b border-b-slate-300">
-            <Text className="font-bold" style={{ fontSize: 22 }}>Fees & Dues</Text>
-            <TouchableOpacity
-              className=""
-            >
-              <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show All</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="p-3">
-            <PaymentCard
-              paymentInfo="College Fees S2 VI Sem APR 2024"
-              paymentAmount="₹ 15,240"
-              buttonText="Pay Now"
-              buttonAction={() => { }}
-            />
-            <HorizontalLine />
-            <PaymentCard
-              paymentInfo="EXAM FEE S2 V SEM NOV 2023"
-              paymentAmount="₹ 1,050"
-              buttonText="Pay Now"
-              buttonAction={() => { }}
-            />
-          </View>
-        </View>
+        <RegularCard
+          title={"Fees & Dues"}
+          headerButtonText={"Show All"}
+          headerButtonOnPress={() => { }}
+          className={"mb-6"}
+          content={
+            <View>
+              <PaymentCard
+                paymentInfo="College Fees S2 VI Sem APR 2024"
+                paymentAmount="₹ 15,240"
+                buttonText="Pay Now"
+                buttonAction={() => { }}
+              />
+              <HorizontalLine />
+              <PaymentCard
+                paymentInfo="EXAM FEE S2 V SEM NOV 2023"
+                paymentAmount="₹ 1,050"
+                buttonText="Pay Now"
+                buttonAction={() => { }}
+              />
+            </View>
+          }
+        />
 
         {/* Academics */}
-        <View className="bg-white rounded-xl mx-3 mt-0 mb-6">
-          <View className="p-3 flex-row items-center justify-between border-b border-b-slate-300">
-            <Text className="font-bold" style={{ fontSize: 22 }}>Academics</Text>
-            <TouchableOpacity
-              className=""
-            >
-              <Text style={{ color: appleSystemBlue }} className="text-center font-bold">Show All</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="p-3 flex-row items-center justify-around">
+        <RegularCard
+          title={"Academics"}
+          headerButtonText={"Show All"}
+          headerButtonOnPress={() => { }}
+          className={"mb-6"}
+          content={
             <View>
-              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current CGPA</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.9</Text>
+              <View className="flex-row items-center justify-between">
+                <View>
+                  <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current CGPA</Text>
+                  <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.9</Text>
+                </View>
+                <View>
+                  <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current SGPA</Text>
+                  <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.6</Text>
+                </View>
+                <View>
+                  <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>BACKLOGS</Text>
+                  <Text className="text-center font-bold" style={{ fontSize: 25 }}>0</Text>
+                </View>
+              </View>
             </View>
-            <View>
-              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current SGPA</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.6</Text>
-            </View>
-            <View>
-              <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>BACKLOGS</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>0</Text>
-            </View>
-          </View>
-        </View>
+          }
+        />
       </ScrollView>
     </SafeAreaView>
   )
