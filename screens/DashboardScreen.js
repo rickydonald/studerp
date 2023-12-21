@@ -63,7 +63,7 @@ export default function DashboardScreen() {
               </Text>
             </View>
             <Image
-              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs632.jpg" }}
+              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs639.jpg" }}
               width={90}
               height={100}
               className="rounded-xl"
@@ -126,6 +126,7 @@ export default function DashboardScreen() {
             <TouchableOpacity
               className="mt-4"
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+              onPress={() => navigation.navigate('Attendance')}
             >
               <Text className="text-center font-semibold">Show Attendance</Text>
             </TouchableOpacity>

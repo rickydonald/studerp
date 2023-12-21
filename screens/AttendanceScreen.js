@@ -7,6 +7,7 @@ import AttendanceCard from '../components/AttendanceCard';
 
 import { appleSystemBlue, appleSystemFillGray10, appleSystemGrayLight6, appleSystemGreen, appleSystemRed, appleSystemGrayLight5, appleSystemGray } from '../src/Config';
 import { Calendar } from 'react-native-calendars';
+import { InformationCircleIcon } from 'react-native-heroicons/outline';
 
 export default function AttendanceScreen() {
 
@@ -35,11 +36,17 @@ export default function AttendanceScreen() {
               <Text className="text-center font-bold" style={{ fontSize: 25 }}>15.0</Text>
             </View>
           </View>
-          <View className="mt-4">
+          <View className="mt-4 flex-row items-stretch">
+            <TouchableOpacity
+              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+              className="flex-1 flexprow items-center justify-center mr-2"
+            >
+              <Text className="text-center font-semibold">Attendance Management</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
             >
-              <Text className="text-center font-semibold">Attendance Management</Text>
+              <InformationCircleIcon color={"#000"} />
             </TouchableOpacity>
           </View>
         </View>
@@ -49,7 +56,7 @@ export default function AttendanceScreen() {
             style={{
               height: 350,
             }}
-            className="mb-5"
+            className="mb-6"
             // Callback that gets called when the user selects a day
             onDayPress={day => {
               console.log('selected day', day);
@@ -65,11 +72,21 @@ export default function AttendanceScreen() {
           <AttendanceCard
             date='15 Dec 23'
             dayOrder='b3'
+            hour1={'p'}
+            hour2={'a'}
+            hour3={'a'}
+            hour4={'od'}
+            hour5={'p'}
           />
           <View style={{ borderBottomColor: appleSystemGray, borderBottomWidth: StyleSheet.hairlineWidth, marginTop: 15, marginBottom: 15 }} className="px-5"></View>
           <AttendanceCard
             date='16 Dec 23'
             dayOrder='c3'
+            hour1={'p'}
+            hour2={'p'}
+            hour3={'p'}
+            hour4={'p'}
+            hour5={'p'}
           />
         </View>
       </ScrollView>
