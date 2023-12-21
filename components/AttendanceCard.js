@@ -10,7 +10,8 @@ export default function AttendanceCard({
     hour2,
     hour3,
     hour4,
-    hour5
+    hour5,
+    showHourMarkings = false
 }) {
 
     const hourColorLogics = (attendance) => {
@@ -26,6 +27,24 @@ export default function AttendanceCard({
             return appleSystemGray3
         }
     }
+
+    const attendanceMicroBoxStyle = StyleSheet.create({
+        container: {
+            padding: 10,
+            borderRadius: 10,
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        text: {
+            display: showHourMarkings ? "flex" : "none",
+            color: '#000',
+            fontSize: 18,
+            fontWeight: 'bold',
+        },
+    })
 
     return (
         <View className="bg-white px-5 flex-row items-center justify-between">
@@ -53,21 +72,3 @@ export default function AttendanceCard({
         </View>
     )
 }
-
-const attendanceMicroBoxStyle = StyleSheet.create({
-    container: {
-        padding: 10,
-        borderRadius: 10,
-        width: 40,
-        height: 40,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        display: "none",
-        color: '#000',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-})

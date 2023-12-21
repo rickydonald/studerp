@@ -1,5 +1,5 @@
 import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity, Switch } from 'react-native'
-import React, { useMemo, useRef, useCallback } from 'react'
+import React, { useMemo, useRef, useCallback, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
@@ -34,6 +34,9 @@ export default function AttendanceScreen() {
     ),
     []
   );
+
+  const [showHourMarkings, setHourMarkings] = useState(false)
+  const handleHourMarkings = () => setHourMarkings(!showHourMarkings)
 
   return (
     <SafeAreaView className="bg-white flex-1" edges={['top']}>
@@ -101,6 +104,7 @@ export default function AttendanceScreen() {
             hour3={'a'}
             hour4={'od'}
             hour5={'p'}
+            showHourMarkings={showHourMarkings}
           />
           <View style={{ borderBottomColor: appleSystemGray, borderBottomWidth: StyleSheet.hairlineWidth, marginTop: 15, marginBottom: 15 }} className="px-5"></View>
           <AttendanceCard
@@ -111,6 +115,18 @@ export default function AttendanceScreen() {
             hour3={'p'}
             hour4={'p'}
             hour5={'p'}
+            showHourMarkings={showHourMarkings}
+          />
+          <View style={{ borderBottomColor: appleSystemGray, borderBottomWidth: StyleSheet.hairlineWidth, marginTop: 15, marginBottom: 15 }} className="px-5"></View>
+          <AttendanceCard
+            date='17 Dec 23'
+            dayOrder='d3'
+            hour1={'p'}
+            hour2={'p'}
+            hour3={'p'}
+            hour4={'p'}
+            hour5={'p'}
+            showHourMarkings={showHourMarkings}
           />
         </View>
       </ScrollView>
@@ -125,20 +141,28 @@ export default function AttendanceScreen() {
         enableDynamicSizing={true}
       >
         <BottomSheetView
-        style={{ padding: 24, paddingBottom: 50 }}
+          style={{ padding: 24, paddingBottom: 50 }}
         >
           <Text className="font-bold mb- text-black mb-4" style={{ fontSize: 22 }}>Attendance Management</Text>
-          <ListMenu 
+          <ListMenu
             menuTitle='Leave Management Form'
             firstMenu={true}
           />
-          <ListMenu 
+          <ListMenu
             menuTitle='Request Attendance Change'
             lastMenu={true}
           />
+          <View className="mt-5 flex-row items-center bg-white p-4 rounded-xl">
+            <Switch
+              className="mr-4"
+              value={showHourMarkings}
+              onValueChange={(switchValue) => setHourMarkings(switchValue)}
+             />
+            <Text style={{ fontSize: 16 }} className="font-medium">Show Hour Markings</Text>
+          </View>
         </BottomSheetView>
       </BottomSheetModal>
-      
+
       {/* Color Marking Info Bottom Sheet */}
       <BottomSheetModal
         backdropComponent={renderBackdrop}
