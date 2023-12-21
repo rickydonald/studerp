@@ -9,7 +9,7 @@ import { appleSystemBlue, appleSystemFillGray10, appleSystemGrayLight6, appleSys
 import { Calendar } from 'react-native-calendars';
 import { InformationCircleIcon } from 'react-native-heroicons/outline';
 
-import { useBottomSheetDynamicSnapPoints, BottomSheetView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetView, BottomSheetScrollView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 import HorizontalLine from '../components/HorizontalLine';
 
 export default function AttendanceScreen() {
@@ -18,12 +18,6 @@ export default function AttendanceScreen() {
 
   const bottomSheetRef = useRef(null)
   const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
-  const {
-    animatedHandleHeight,
-    animatedSnapPoints,
-    animatedContentHeight,
-    handleContentLayout,
-  } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const handleOpenPress = (postId, instanceId, userId = null) => {
     bottomSheetRef.current?.present()
@@ -124,42 +118,37 @@ export default function AttendanceScreen() {
         backdropComponent={renderBackdrop}
         ref={bottomSheetRef}
         index={0}
-        snapPoints={animatedSnapPoints}
-        handleHeight={animatedHandleHeight}
-        contentHeight={animatedContentHeight}
         backgroundStyle={{ backgroundColor: 'rgb(242, 242, 247)', borderRadius: 24 }}
         enablePanDownToClose={true}
+        enableDynamicSizing={true}
       >
         <BottomSheetView
-          style={{ flex: 1, padding: 24 }}
-          onLayout={handleContentLayout}
+          style={{ padding: 24, paddingBottom: 50 }}
         >
-          <View className="pb-5 px-2 pt-0" style={{ marginBottom: 25 }}>
-            <Text className="font-bold mb-6" style={{ fontSize: 22 }}>Color Markings</Text>
-            <View className="flex-row items-center justify-between">
-              <View style={{ backgroundColor: appleSystemGreen, width: 40, height: 40, borderRadius: 10 }}></View>
-              <Text className="font-semibold" style={{ fontSize: 18 }}>Present</Text>
-            </View>
-            <HorizontalLine />
-            <View className="flex-row items-center justify-between">
-              <View style={{ backgroundColor: appleSystemRed, width: 40, height: 40, borderRadius: 10 }}></View>
-              <Text className="font-semibold" style={{ fontSize: 18 }}>Absent</Text>
-            </View>
-            <HorizontalLine />
-            <View className="flex-row items-center justify-between">
-              <View style={{ backgroundColor: appleSystemBlue, width: 40, height: 40, borderRadius: 10 }}></View>
-              <Text className="font-semibold" style={{ fontSize: 18 }}>On Duty (OD)</Text>
-            </View>
-            <HorizontalLine />
-            <View className="flex-row items-center justify-between">
-              <View style={{ backgroundColor: appleSystemOrange, width: 40, height: 40, borderRadius: 10 }}></View>
-              <Text className="font-semibold" style={{ fontSize: 18 }}>Medical Leave (ML)</Text>
-            </View>
-            <HorizontalLine />
-            <View className="flex-row items-center justify-between">
-              <View style={{ backgroundColor: appleSystemGray3, width: 40, height: 40, borderRadius: 10 }}></View>
-              <Text className="font-semibold" style={{ fontSize: 18 }}>Not Marked</Text>
-            </View>
+          <Text className="font-bold mb-6" style={{ fontSize: 22 }}>Color Markings</Text>
+          <View className="flex-row items-center justify-between">
+            <View style={{ backgroundColor: appleSystemGreen, width: 40, height: 40, borderRadius: 10 }}></View>
+            <Text className="font-semibold" style={{ fontSize: 18 }}>Present</Text>
+          </View>
+          <HorizontalLine />
+          <View className="flex-row items-center justify-between">
+            <View style={{ backgroundColor: appleSystemRed, width: 40, height: 40, borderRadius: 10 }}></View>
+            <Text className="font-semibold" style={{ fontSize: 18 }}>Absent</Text>
+          </View>
+          <HorizontalLine />
+          <View className="flex-row items-center justify-between">
+            <View style={{ backgroundColor: appleSystemBlue, width: 40, height: 40, borderRadius: 10 }}></View>
+            <Text className="font-semibold" style={{ fontSize: 18 }}>On Duty (OD)</Text>
+          </View>
+          <HorizontalLine />
+          <View className="flex-row items-center justify-between">
+            <View style={{ backgroundColor: appleSystemOrange, width: 40, height: 40, borderRadius: 10 }}></View>
+            <Text className="font-semibold" style={{ fontSize: 18 }}>Medical Leave (ML)</Text>
+          </View>
+          <HorizontalLine />
+          <View className="flex-row items-center justify-between">
+            <View style={{ backgroundColor: appleSystemGray3, width: 40, height: 40, borderRadius: 10 }}></View>
+            <Text className="font-semibold" style={{ fontSize: 18 }}>Not Marked</Text>
           </View>
         </BottomSheetView>
       </BottomSheetModal>
