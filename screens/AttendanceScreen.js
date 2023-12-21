@@ -1,27 +1,26 @@
-import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity, Switch } from 'react-native'
 import React, { useMemo, useRef, useCallback } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import AttendanceCard from '../components/AttendanceCard';
 
-import { appleSystemBlue, appleSystemFillGray10, appleSystemGrayLight6, appleSystemGreen, appleSystemRed, appleSystemGrayLight5, appleSystemGray, appleSystemOrange, appleSystemGray3 } from '../src/Config';
+import { appleSystemBlue, appleSystemFillGray10, appleSystemGreen, appleSystemRed, appleSystemGrayLight5, appleSystemGray, appleSystemOrange, appleSystemGray3 } from '../src/Config';
 import { Calendar } from 'react-native-calendars';
 import { InformationCircleIcon } from 'react-native-heroicons/outline';
 
 import { BottomSheetView, BottomSheetScrollView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 import HorizontalLine from '../components/HorizontalLine';
 
+import ListMenu from '../components/ListMenu';
+
 export default function AttendanceScreen() {
 
   const navigation = useNavigation();
 
-  const bottomSheetRef = useRef(null)
-  const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
+  const bottomSheetRefColorMarkings = useRef(null)
+  const bottomSheetRefAttendanceManagement = useRef(null)
 
-  const handleOpenPress = (postId, instanceId, userId = null) => {
-    bottomSheetRef.current?.present()
-  }
 
   const handleClosePress = () => { bottomSheetRef.current.close(); setSelectedPostId(null); }
   const renderBackdrop = useCallback(
@@ -63,12 +62,13 @@ export default function AttendanceScreen() {
             <TouchableOpacity
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
               className="flex-1 flexprow items-center justify-center mr-2"
+              onPress={() => bottomSheetRefAttendanceManagement.current.present()}
             >
               <Text className="text-center font-semibold">Attendance Management</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
-              onPress={() => handleOpenPress()}
+              onPress={() => bottomSheetRefColorMarkings.current.present()}
             >
               <InformationCircleIcon color={"#000"} />
             </TouchableOpacity>
@@ -114,9 +114,35 @@ export default function AttendanceScreen() {
           />
         </View>
       </ScrollView>
+
+      {/* Attendance Management Bottom Sheet */}
       <BottomSheetModal
         backdropComponent={renderBackdrop}
-        ref={bottomSheetRef}
+        ref={bottomSheetRefAttendanceManagement}
+        index={0}
+        backgroundStyle={{ backgroundColor: 'rgb(242, 242, 247)', borderRadius: 24 }}
+        enablePanDownToClose={true}
+        enableDynamicSizing={true}
+      >
+        <BottomSheetView
+        style={{ padding: 24, paddingBottom: 50 }}
+        >
+          <Text className="font-bold mb- text-black mb-4" style={{ fontSize: 22 }}>Attendance Management</Text>
+          <ListMenu 
+            menuTitle='Leave Management Form'
+            firstMenu={true}
+          />
+          <ListMenu 
+            menuTitle='Request Attendance Change'
+            lastMenu={true}
+          />
+        </BottomSheetView>
+      </BottomSheetModal>
+      
+      {/* Color Marking Info Bottom Sheet */}
+      <BottomSheetModal
+        backdropComponent={renderBackdrop}
+        ref={bottomSheetRefColorMarkings}
         index={0}
         backgroundStyle={{ backgroundColor: 'rgb(242, 242, 247)', borderRadius: 24 }}
         enablePanDownToClose={true}
@@ -127,27 +153,27 @@ export default function AttendanceScreen() {
         >
           <Text className="font-bold mb-6" style={{ fontSize: 22 }}>Color Markings</Text>
           <View className="flex-row items-center justify-between">
-            <View style={{ backgroundColor: appleSystemGreen, width: 40, height: 40, borderRadius: 10 }}></View>
+            <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}></View>
             <Text className="font-semibold" style={{ fontSize: 18 }}>Present</Text>
           </View>
           <HorizontalLine />
           <View className="flex-row items-center justify-between">
-            <View style={{ backgroundColor: appleSystemRed, width: 40, height: 40, borderRadius: 10 }}></View>
+            <View style={[{ backgroundColor: appleSystemRed }, attendanceMicroBoxStyle.container]}></View>
             <Text className="font-semibold" style={{ fontSize: 18 }}>Absent</Text>
           </View>
           <HorizontalLine />
           <View className="flex-row items-center justify-between">
-            <View style={{ backgroundColor: appleSystemBlue, width: 40, height: 40, borderRadius: 10 }}></View>
+            <View style={[{ backgroundColor: appleSystemBlue }, attendanceMicroBoxStyle.container]}></View>
             <Text className="font-semibold" style={{ fontSize: 18 }}>On Duty (OD)</Text>
           </View>
           <HorizontalLine />
           <View className="flex-row items-center justify-between">
-            <View style={{ backgroundColor: appleSystemOrange, width: 40, height: 40, borderRadius: 10 }}></View>
+            <View style={[{ backgroundColor: appleSystemOrange }, attendanceMicroBoxStyle.container]}></View>
             <Text className="font-semibold" style={{ fontSize: 18 }}>Medical Leave (ML)</Text>
           </View>
           <HorizontalLine />
           <View className="flex-row items-center justify-between">
-            <View style={{ backgroundColor: appleSystemGray3, width: 40, height: 40, borderRadius: 10 }}></View>
+            <View style={[{ backgroundColor: appleSystemGray3 }, attendanceMicroBoxStyle.container]}></View>
             <Text className="font-semibold" style={{ fontSize: 18 }}>Not Marked</Text>
           </View>
         </BottomSheetView>
@@ -158,13 +184,9 @@ export default function AttendanceScreen() {
 
 const attendanceMicroBoxStyle = StyleSheet.create({
   container: {
-    padding: 10,
-    borderRadius: 10,
     width: 40,
     height: 40,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderRadius: 10
   },
   text: {
     display: "none",
