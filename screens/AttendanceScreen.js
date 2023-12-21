@@ -1,5 +1,5 @@
 import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity, Switch } from 'react-native'
-import React, { useMemo, useRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
@@ -9,7 +9,7 @@ import { appleSystemBlue, appleSystemFillGray10, appleSystemGreen, appleSystemRe
 import { Calendar } from 'react-native-calendars';
 import { InformationCircleIcon } from 'react-native-heroicons/outline';
 
-import { BottomSheetView, BottomSheetScrollView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 import HorizontalLine from '../components/HorizontalLine';
 
 import ListMenu from '../components/ListMenu';
@@ -21,8 +21,6 @@ export default function AttendanceScreen() {
   const bottomSheetRefColorMarkings = useRef(null)
   const bottomSheetRefAttendanceManagement = useRef(null)
 
-
-  const handleClosePress = () => { bottomSheetRef.current.close(); setSelectedPostId(null); }
   const renderBackdrop = useCallback(
     props => (
       <BottomSheetBackdrop
