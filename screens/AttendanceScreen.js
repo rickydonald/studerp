@@ -155,7 +155,7 @@ export default function AttendanceScreen() {
               className="mr-4"
               value={showHourMarkings}
               onValueChange={(switchValue) => setHourMarkings(switchValue)}
-             />
+            />
             <Text style={{ fontSize: 16 }} className="font-medium">Show Hour Markings</Text>
           </View>
         </BottomSheetView>
@@ -171,32 +171,34 @@ export default function AttendanceScreen() {
         enableDynamicSizing={true}
       >
         <BottomSheetView
-          style={{ padding: 24, paddingBottom: 50 }}
+          style={{ padding: 18, paddingBottom: 50 }}
         >
-          <Text className="font-bold mb-6" style={{ fontSize: 22 }}>Color Markings</Text>
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}></View>
-            <Text className="font-semibold" style={{ fontSize: 18 }}>Present</Text>
-          </View>
-          <HorizontalLine />
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemRed }, attendanceMicroBoxStyle.container]}></View>
-            <Text className="font-semibold" style={{ fontSize: 18 }}>Absent</Text>
-          </View>
-          <HorizontalLine />
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemBlue }, attendanceMicroBoxStyle.container]}></View>
-            <Text className="font-semibold" style={{ fontSize: 18 }}>On Duty (OD)</Text>
-          </View>
-          <HorizontalLine />
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemOrange }, attendanceMicroBoxStyle.container]}></View>
-            <Text className="font-semibold" style={{ fontSize: 18 }}>Medical Leave (ML)</Text>
-          </View>
-          <HorizontalLine />
-          <View className="flex-row items-center justify-between">
-            <View style={[{ backgroundColor: appleSystemGray3 }, attendanceMicroBoxStyle.container]}></View>
-            <Text className="font-semibold" style={{ fontSize: 18 }}>Not Marked</Text>
+          <Text className="font-bold mb-6" style={{ fontSize: 22, paddingLeft: 15 }}>Color Markings</Text>
+          <View className="bg-white" style={{ padding: 15, borderRadius: 16 }}>
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemGreen }, attendanceMicroBoxStyle.container]}></View>
+              <Text className="font-semibold" style={{ fontSize: 18 }}>Present</Text>
+            </View>
+            <HorizontalLine />
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemRed }, attendanceMicroBoxStyle.container]}></View>
+              <Text className="font-semibold" style={{ fontSize: 18 }}>Absent</Text>
+            </View>
+            <HorizontalLine />
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemBlue }, attendanceMicroBoxStyle.container]}></View>
+              <Text className="font-semibold" style={{ fontSize: 18 }}>On Duty (OD)</Text>
+            </View>
+            <HorizontalLine />
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemOrange }, attendanceMicroBoxStyle.container]}></View>
+              <Text className="font-semibold" style={{ fontSize: 18 }}>Medical Leave (ML)</Text>
+            </View>
+            <HorizontalLine />
+            <View className="flex-row items-center justify-between">
+              <View style={[{ backgroundColor: appleSystemGray3 }, attendanceMicroBoxStyle.container]}></View>
+              <Text className="font-semibold" style={{ fontSize: 18 }}>Not Marked</Text>
+            </View>
           </View>
         </BottomSheetView>
       </BottomSheetModal>
