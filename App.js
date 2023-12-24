@@ -17,6 +17,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import AttendanceScreen from './screens/AttendanceScreen';
 import AcademicsScreen from './screens/AcademicsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import FeesDueScreen from './screens/FeesDueScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,6 +65,18 @@ const LoginStack = () => {
         }}
         name="Academics" component={AcademicsScreen}
       />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return focused ? (
+              <IconsSolid.BanknotesIcon />
+            ) : (
+              <IconsOutline.BanknotesIcon />
+            )
+          }
+        }}
+        name="Fees & Dues " component={FeesDueScreen}
+      />
     </Tab.Navigator>
   );
 }
@@ -71,7 +84,6 @@ const LoginStack = () => {
 export default function App() {
   return (
     <>
-      <StatusBar style='auto' />
       <GestureHandlerRootView style={{ flex: 1 }}>
         <BottomSheetModalProvider>
           <NavigationContainer>
