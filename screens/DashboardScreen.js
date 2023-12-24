@@ -80,6 +80,7 @@ export default function DashboardScreen() {
             <TouchableOpacity
               className="flex-1"
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
+              onPress={() => navigation.navigate('Preferences')}
             >
               <Text className="text-center font-semibold">Preferences</Text>
             </TouchableOpacity>

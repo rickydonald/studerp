@@ -18,6 +18,7 @@ import AttendanceScreen from './screens/AttendanceScreen';
 import AcademicsScreen from './screens/AcademicsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import FeesDueScreen from './screens/FeesDueScreen';
+import PreferenceScreen from './screens/PreferenceScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -98,6 +99,7 @@ export default function App() {
             >
               <Stack.Screen name="Home" component={LoginStack} />
               <Stack.Screen name="Profile" component={ProfileScreen} />
+              <Stack.Screen name="Preferences" component={PreferenceScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </BottomSheetModalProvider>

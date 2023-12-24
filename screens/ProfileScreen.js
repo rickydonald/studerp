@@ -17,7 +17,7 @@ export default function ProfileScreen() {
 
     return (
         <SafeAreaView className="bg-white flex-1">
-            <Header screenName={"Profile"} />
+            <Header screenName={"Profile"} showBackButton={true} />
             <ScrollView className="px-5 pt-5 bg-white">
                 <ProfileDataCard
                     title={"Register Number"}
