@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 import { appleSystemFillGray10 } from '../src/Config';
 import PaymentCard from '../components/PaymentCard';
+import HorizontalLine from '../components/HorizontalLine';
 
 const FirstRoute = () => (
   <ScrollView className="flex-1 px-5 py-5">
@@ -12,6 +13,13 @@ const FirstRoute = () => (
       <PaymentCard
         paymentInfo="EXAM FEE S2 V SEM NOV 2023"
         paymentAmount="₹ 1,050"
+        buttonText="Pay Now"
+        buttonAction={() => { }}
+      />
+      <HorizontalLine />
+      <PaymentCard
+        paymentInfo="Library Due - 2022 (Little Flower Book)"
+        paymentAmount="₹ 800"
         buttonText="Pay Now"
         buttonAction={() => { }}
       />
