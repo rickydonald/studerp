@@ -141,7 +141,7 @@ export default function AttendanceScreen() {
         <BottomSheetView
           style={{ padding: 24, paddingBottom: 50 }}
         >
-          <Text className="font-bold mb- text-black mb-4" style={{ fontSize: 22 }}>Attendance Management</Text>
+          <Text className="font-bold pl-4 mb- text-black mb-4" style={{ fontSize: 22 }}>Attendance Management</Text>
           <ListMenu
             menuTitle='Leave Management Form'
             firstMenu={true}
