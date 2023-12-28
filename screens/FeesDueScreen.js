@@ -7,7 +7,7 @@ import { appleSystemFillGray10 } from '../src/Config';
 import PaymentCard from '../components/PaymentCard';
 import HorizontalLine from '../components/HorizontalLine';
 
-const FirstRoute = () => (
+const All = () => (
   <ScrollView className="flex-1 px-5 py-5">
     <View>
       <PaymentCard
@@ -21,34 +21,55 @@ const FirstRoute = () => (
         paymentInfo="Library Due - 2022 (Little Flower Book)"
         paymentAmount="₹ 800"
         buttonText="Pay Now"
+        isPaid={true}
         buttonAction={() => { }}
       />
     </View>
   </ScrollView>
 );
 
-const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+const NotPaid = () => (
+  <ScrollView className="flex-1 px-5 py-5">
+    <View>
+      <PaymentCard
+        paymentInfo="EXAM FEE S2 V SEM NOV 2023"
+        paymentAmount="₹ 1,050"
+        buttonText="Pay Now"
+        buttonAction={() => { }}
+      />
+    </View>
+  </ScrollView>
 );
 
-const ThirdRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+const Paid = () => (
+  <ScrollView className="flex-1 px-5 py-5">
+    <View>
+      <PaymentCard
+        paymentInfo="Library Due - 2022 (Little Flower Book)"
+        paymentAmount="₹ 800"
+        buttonText="Pay Now"
+        isPaid={true}
+        buttonAction={() => { }}
+      />
+    </View>
+  </ScrollView>
 );
 
 const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-  third: ThirdRoute
+  allRoute: All,
+  notPaidRoute: NotPaid,
+  paidRoute: Paid
 });
 
-export default function TabViewExample() {
+export default function FeesDueScreen() {
+
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'All' },
-    { key: 'second', title: 'Not Paid' },
-    { key: 'third', title: 'Paid' },
+    { key: 'allRoute', title: 'All' },
+    { key: 'notPaidRoute', title: 'Not Paid' },
+    { key: 'paidRoute', title: 'Paid' },
   ]);
 
   const renderTabBar = props => (
