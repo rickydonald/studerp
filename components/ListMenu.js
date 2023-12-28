@@ -13,6 +13,7 @@ const ListMenu = ({
     menuSpacing,
     menuClass,
     menuIcon = <Icons.ChevronRightIcon color={"#252525"} size={28} />,
+    disabled = false
 }) => {
     return (
         <>
@@ -22,6 +23,7 @@ const ListMenu = ({
                     activeOpacity={0.4}
                     style={menuSpacing}
                     className={menuClass}
+                    disabled={disabled}
                 >
                     <View className="bg-white py-4 flex-row justify-between items-center rounded-xl">
                         <Text style={titleStyle} className="pl-4 font-medium text-base">
@@ -37,6 +39,7 @@ const ListMenu = ({
                         onPress={onPressEvent}
                         activeOpacity={0.4}
                         style={menuSpacing}
+                        disabled={disabled}
                     >
                         <View className="bg-white py-4 flex-row justify-between items-center rounded-t-xl">
                             <Text style={titleStyle} className="pl-4 font-medium text-base">
@@ -54,6 +57,7 @@ const ListMenu = ({
                         onPress={onPressEvent}
                         activeOpacity={0.4}
                         style={menuSpacing}
+                        disabled={disabled}
                     >
                         <View className="bg-white py-4 flex-row justify-between items-center">
                             <Text style={titleStyle} className="pl-4 font-medium text-base">
@@ -71,6 +75,7 @@ const ListMenu = ({
                         onPress={onPressEvent}
                         activeOpacity={0.4}
                         style={menuSpacing}
+                        disabled={disabled}
                     >
                         <View className="bg-white py-4 flex-row justify-between items-center rounded-b-xl">
                             <Text style={titleStyle} className="pl-4 font-medium text-base">

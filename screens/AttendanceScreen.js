@@ -76,7 +76,7 @@ export default function AttendanceScreen() {
           </View>
         </View>
         {/* Attendance View */}
-        <View>
+        <View className="pb-5">
           <Calendar
             style={{
               height: 350,
@@ -96,7 +96,7 @@ export default function AttendanceScreen() {
           {/* Attendance Cards */}
           <AttendanceCard
             date='15 Dec 23'
-            dayOrder='b3'
+            dayOrder='b'
             hour1={'p'}
             hour2={'a'}
             hour3={'a'}
@@ -107,7 +107,7 @@ export default function AttendanceScreen() {
           <View style={{ borderBottomColor: appleSystemGray, borderBottomWidth: StyleSheet.hairlineWidth, marginTop: 15, marginBottom: 15 }} className="px-5"></View>
           <AttendanceCard
             date='16 Dec 23'
-            dayOrder='c3'
+            dayOrder='c'
             hour1={'p'}
             hour2={'p'}
             hour3={'p'}
@@ -118,7 +118,7 @@ export default function AttendanceScreen() {
           <View style={{ borderBottomColor: appleSystemGray, borderBottomWidth: StyleSheet.hairlineWidth, marginTop: 15, marginBottom: 15 }} className="px-5"></View>
           <AttendanceCard
             date='17 Dec 23'
-            dayOrder='d3'
+            dayOrder='d'
             hour1={'p'}
             hour2={'p'}
             hour3={'p'}
@@ -150,14 +150,19 @@ export default function AttendanceScreen() {
             menuTitle='Request Attendance Change'
             lastMenu={true}
           />
-          <View className="mt-5 flex-row items-center bg-white p-4 rounded-xl">
-            <Switch
-              className="mr-4"
-              value={showHourMarkings}
-              onValueChange={(switchValue) => setHourMarkings(switchValue)}
-            />
-            <Text style={{ fontSize: 16 }} className="font-medium">Show Hour Markings</Text>
-          </View>
+          <ListMenu
+            menuTitle='Show Markings'
+            singleMenu={true}
+            disabled={true}
+            menuIcon={
+              <Switch
+                className="mr-4"
+                value={showHourMarkings}
+                onValueChange={(switchValue) => setHourMarkings(switchValue)}
+              />
+            }
+            menuSpacing={{ marginTop: 20 }}
+          />
         </BottomSheetView>
       </BottomSheetModal>
 
