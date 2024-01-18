@@ -151,7 +151,7 @@ export default function AttendanceScreen() {
             lastMenu={true}
           />
           <ListMenu
-            menuTitle='Show Markings'
+            menuTitle='Show Hour Markings'
             singleMenu={true}
             disabled={true}
             menuIcon={

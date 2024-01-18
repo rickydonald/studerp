@@ -22,21 +22,32 @@ import PreferenceScreen from './screens/PreferenceScreen';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
+const tab_icon_color = "#000";
+const tab_icon_size = 28;
 
 const LoginStack = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+        },
       }}
     >
       <Tab.Screen
         options={{
           tabBarIcon: ({ focused }) => {
             return focused ? (
-              <IconsSolid.HomeIcon />
+              <IconsSolid.HomeIcon
+                color={tab_icon_color}
+                size={tab_icon_size}
+              />
             ) : (
-              <IconsOutline.HomeIcon />
+              <IconsOutline.HomeIcon
+                color={tab_icon_color}
+                size={tab_icon_size}
+              />
             )
           }
         }}
@@ -46,9 +57,11 @@ const LoginStack = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return focused ? (
-              <IconsSolid.IdentificationIcon />
+              <IconsSolid.IdentificationIcon color={tab_icon_color}
+                size={tab_icon_size} />
             ) : (
-              <IconsOutline.IdentificationIcon />
+              <IconsOutline.IdentificationIcon color={tab_icon_color}
+                size={tab_icon_size} />
             )
           }
         }}
@@ -58,9 +71,11 @@ const LoginStack = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return focused ? (
-              <IconsSolid.AcademicCapIcon />
+              <IconsSolid.AcademicCapIcon color={tab_icon_color}
+                size={tab_icon_size} />
             ) : (
-              <IconsOutline.AcademicCapIcon />
+              <IconsOutline.AcademicCapIcon color={tab_icon_color}
+                size={tab_icon_size} />
             )
           }
         }}
@@ -70,9 +85,11 @@ const LoginStack = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return focused ? (
-              <IconsSolid.BanknotesIcon />
+              <IconsSolid.BanknotesIcon color={tab_icon_color}
+                size={tab_icon_size} />
             ) : (
-              <IconsOutline.BanknotesIcon />
+              <IconsOutline.BanknotesIcon color={tab_icon_color}
+                size={tab_icon_size} />
             )
           }
         }}

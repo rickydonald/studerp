@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from '../components/Header'
 import { BottomSheetView, BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 
-import { appleSystemFillGray10, appleSystemGray } from '../src/Config'
+import { appleSystemFillGray10, appleSystemGray, appleSystemGreen, appleSystemRed } from '../src/Config'
 import { ChevronRightIcon } from 'react-native-heroicons/outline';
 import HorizontalLine from '../components/HorizontalLine';
 import VerticalLine from '../components/VerticalLine';
@@ -105,8 +105,12 @@ export default function AcademicsScreen() {
                     <Text className="text-center font-bold" style={{ fontSize: 25 }}>8.6</Text>
                   </View>
                   <View>
-                    <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Courses Completed</Text>
-                    <Text className="text-center font-bold" style={{ fontSize: 25 }}>3.0</Text>
+                    <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>BACKLOGS</Text>
+                    <Text className="text-center font-bold" style={{ fontSize: 25 }}>2</Text>
+                  </View>
+                  <View>
+                    <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Completed</Text>
+                    <Text className="text-center font-bold" style={{ fontSize: 25 }}>10</Text>
                   </View>
                 </View>
               </View>
@@ -167,11 +171,11 @@ export default function AcademicsScreen() {
           </View>
 
 
-          {/* Components (Assignments) */}
           <View
-            className="bg-white"
+            className="bg-white mb-3"
             style={{ borderRadius: 16 }}
           >
+            {/* Components (Assignments) */}
             <View className="flex-row justify-between items-center">
               <View style={{ padding: 15 }}>
                 <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Component 1</Text>
@@ -195,12 +199,41 @@ export default function AcademicsScreen() {
             >
               <View style={{ padding: 15 }}>
                 <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Mid Semester</Text>
-                <Text className="font-bold text-center" style={{ fontSize: 22 }}>58.0</Text>
+                <Text className="font-bold text-center" style={{ fontSize: 22 }}>27.0</Text>
               </View>
               <VerticalLine />
               <View style={{ padding: 15 }}>
                 <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>End Semester</Text>
-                <Text className="font-bold text-center" style={{ fontSize: 22 }}>54.0</Text>
+                <Text className="font-bold text-center" style={{ fontSize: 22 }}>28.0</Text>
+              </View>
+            </View>
+          </View>
+
+          <View
+            className="bg-white"
+            style={{ borderRadius: 16 }}
+          >
+            {/* Tests */}
+            <View className="flex-row justify-around items-center"
+              style={{ padding: 0 }}
+            >
+              <View style={{ padding: 15 }}>
+                <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Library</Text>
+                <Text className="font-bold text-center" style={{ fontSize: 22 }}>5.0</Text>
+              </View>
+              <VerticalLine />
+              <View style={{ padding: 15 }}>
+                <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Total</Text>
+                <Text className="font-bold text-center" style={{ fontSize: 22 }}>91.0</Text>
+              </View>
+              <VerticalLine />
+              <View style={{ padding: 15 }}>
+                <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Eligibility</Text>
+                <Text className="font-bold text-center"
+                  style={{ fontSize: 22, color: appleSystemGreen }}
+                >
+                  E
+                </Text>
               </View>
             </View>
           </View>

@@ -54,19 +54,19 @@ export default function AttendanceCard({
             </View>
             <View className="flex-row items-center justify-between gap-2">
                 <View style={[{ backgroundColor: hourColorLogics(hour1) }, attendanceMicroBoxStyle.container]}>
-                    <Text style={attendanceMicroBoxStyle.text}>I</Text>
+                    <Text style={attendanceMicroBoxStyle.text}>1</Text>
                 </View>
                 <View style={[{ backgroundColor: hourColorLogics(hour2) }, attendanceMicroBoxStyle.container]}>
-                    <Text style={attendanceMicroBoxStyle.text}>II</Text>
+                    <Text style={attendanceMicroBoxStyle.text}>2</Text>
                 </View>
                 <View style={[{ backgroundColor: hourColorLogics(hour3) }, attendanceMicroBoxStyle.container]}>
-                    <Text style={attendanceMicroBoxStyle.text}>III</Text>
+                    <Text style={attendanceMicroBoxStyle.text}>3</Text>
                 </View>
                 <View style={[{ backgroundColor: hourColorLogics(hour4) }, attendanceMicroBoxStyle.container]}>
-                    <Text style={attendanceMicroBoxStyle.text}>IV</Text>
+                    <Text style={attendanceMicroBoxStyle.text}>4</Text>
                 </View>
                 <View style={[{ backgroundColor: hourColorLogics(hour5) }, attendanceMicroBoxStyle.container]}>
-                    <Text style={attendanceMicroBoxStyle.text}>V</Text>
+                    <Text style={attendanceMicroBoxStyle.text}>5</Text>
                 </View>
             </View>
         </View>
