@@ -63,7 +63,7 @@ export default function DashboardScreen() {
               </Text>
             </View>
             <Image
-              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs639.jpg" }}
+              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs632.jpg" }}
               width={90}
               height={100}
               className="rounded-xl"
@@ -137,8 +137,6 @@ export default function DashboardScreen() {
         {/* Payments */}
         <RegularCard
           title={"Fees & Dues"}
-          headerButtonText={"Show All"}
-          headerButtonOnPress={() => { }}
           className={"mb-6"}
           content={
             <View>
@@ -162,8 +160,6 @@ export default function DashboardScreen() {
         {/* Academics */}
         <RegularCard
           title={"Academics"}
-          headerButtonText={"Show All"}
-          headerButtonOnPress={() => { }}
           className={"mb-6"}
           content={
             <View>

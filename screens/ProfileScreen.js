@@ -40,7 +40,7 @@ export default function ProfileScreen() {
                 />
                 <HorizontalLine />
                 <ProfileDataCard
-                    title={"DoB"}
+                    title={"Date of Birth"}
                     data={"28-09-2003"}
                     className={"mb-5"}
                 />

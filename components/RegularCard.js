@@ -10,14 +10,17 @@ export default function RegularCard({ title, headerButtonText, headerButtonOnPre
                     <Text className="font-bold" style={{ fontSize: 22 }}>
                         {title ? title : <Text>Card Title</Text>}
                     </Text>
-                    <TouchableOpacity
-                        className=""
-                        onPress={headerButtonOnPress}
-                    >
-                        <Text style={[{ color: buttonColor }, buttonTextStyle]} className="text-center font-bold">
-                            {headerButtonText}
-                        </Text>
-                    </TouchableOpacity>
+                    {
+                        headerButtonText &&
+                        <TouchableOpacity
+                            className=""
+                            onPress={headerButtonOnPress}
+                        >
+                            <Text style={[{ color: buttonColor }, buttonTextStyle]} className="text-center font-bold">
+                                {headerButtonText}
+                            </Text>
+                        </TouchableOpacity>
+                    }
                 </View>
                 <View className="p-3">
                     {content ? content : <Text>Card Content</Text>}
