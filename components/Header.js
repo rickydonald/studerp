@@ -12,7 +12,7 @@ export default function Header({ screenName, showBackButton = false }) {
         <View className="flex-row items-center px-3 pb-3 justify-between bg-white">
             <TouchableOpacity
                 onPress={() => {
-                    showBackButton && navigation.goBack()
+                    showBackButton ? navigation.goBack() : navigation.navigate('Profile')
                 }}
             >
                 {
@@ -36,6 +36,7 @@ export default function Header({ screenName, showBackButton = false }) {
             <TouchableOpacity
                 className="bg-gray-200 rounded-full"
                 style={{ padding: 10 }}
+                onPress={() => navigation.navigate("Notify")}
             >
                 <Icons.BellIcon
                     color={"#000"}

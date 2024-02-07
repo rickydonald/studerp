@@ -11,13 +11,12 @@ export default function ProfileScreen() {
     const navigation = useNavigation();
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerShown: false,
+            headerShown: true,
         });
     }, [])
 
     return (
-        <SafeAreaView className="bg-white flex-1">
-            <Header screenName={"Profile"} showBackButton={true} />
+        <SafeAreaView className="bg-white flex-1" edges={['bottom']}>
             <ScrollView className="px-5 pt-5 bg-white">
                 <ProfileDataCard
                     title={"Register Number"}

@@ -106,7 +106,7 @@ export default function AcademicsScreen() {
                   </View>
                   <View>
                     <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>BACKLOGS</Text>
-                    <Text className="text-center font-bold" style={{ fontSize: 25 }}>2</Text>
+                    <Text className="text-center font-bold" style={{ fontSize: 25 }}>0</Text>
                   </View>
                   <View>
                     <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Completed</Text>
@@ -230,9 +230,9 @@ export default function AcademicsScreen() {
               <View style={{ padding: 15 }}>
                 <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Eligibility</Text>
                 <Text className="font-bold text-center"
-                  style={{ fontSize: 22, color: appleSystemGreen }}
+                  style={{ fontSize: 22, color: appleSystemRed }}
                 >
-                  E
+                  N/E
                 </Text>
               </View>
             </View>

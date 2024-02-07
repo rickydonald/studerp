@@ -4,8 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
-import { LinearGradient } from 'expo-linear-gradient'
-import { appleSystemBlue, appleSystemFillGray10, appleSystemGray2, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemGreenDark, appleSystemRed, appleSystemRedDark } from '../src/Config';
+import { appleSystemBlue, appleSystemFillGray10, appleSystemGrayLight5, appleSystemGrayLight6, appleSystemGreen, appleSystemRed } from '../src/Config';
 import HorizontalLine from '../components/HorizontalLine';
 import PaymentCard from '../components/PaymentCard';
 import RegularCard from '../components/RegularCard';
