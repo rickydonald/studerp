@@ -1,4 +1,4 @@
-import { Platform, ActivityIndicator, View, Text } from 'react-native';
+import { Platform, ActivityIndicator, View, Text, TouchableOpacity, Image, Pressable } from 'react-native';
 import "react-native-gesture-handler";
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
@@ -7,10 +7,11 @@ import { AuthContext } from './src/AuthContext';
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -29,89 +30,237 @@ import NotSc from './screens/NotSc';
 import LoginScreen from './screens/LoginScreen';
 import DeveloperScreen from './screens/DeveloperScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import { StatusBar } from 'expo-status-bar';
+import ChangePasswordScreen from './screens/PasswordResetStack/ChangePasswordScreen';
+
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 
 const Stack = Platform.OS === 'ios' ? createNativeStackNavigator() : createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 const tab_icon_color = "#000";
-const tab_icon_size = 28;
+const tab_icon_size = 26;
 
-const LoginStack = () => {
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+} from '@react-navigation/drawer';
+import FeedbackScreen from './screens/FeedbackScreen';
+import { appleSystemGrayLight6 } from './src/Config';
+import LeaveManagementFormScreen from './screens/LeaveManagementFormScreen';
+
+function CustomDrawerContent(props) {
+
+  const { userGlobalData } = React.useContext(AuthContext);
+
   return (
-    <Tab.Navigator
+    <DrawerContentScrollView {...props}>
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: 'bold',
+          marginLeft: 10,
+          color: '#000',
+        }}
+      >Student ERP</Text>
+      <Pressable
+        style={{ padding: 10, margin: 10, borderRadius: 16, backgroundColor: appleSystemGrayLight6, marginBottom: 20 }}
+        className="flex-row items-center"
+        onPress={() => {
+          props.navigation.closeDrawer();
+          props.navigation.navigate("Profile")
+        }}
+      >
+        <Image
+          source={{ uri: `https://sjctni.edu/images/SPhotos/21/${userGlobalData.register_number}.jpg` }}
+          width={70}
+          height={70}
+          className="rounded-full"
+        />
+        <View style={{ marginLeft: 15 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{userGlobalData.fullname}</Text>
+          <Text style={{ fontSize: 16, color: 'grey', marginTop: 3 }}>
+            {userGlobalData.register_number.toUpperCase()}
+          </Text>
+        </View>
+      </Pressable>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
+
+const LoggedInStack = () => {
+
+  const navigation = useNavigation();
+  const iconSpacing = -20;
+
+  return (
+    <Drawer.Navigator
+      initialRouteName="Dashboard"
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          height: Platform.OS === 'android' ? 60 : 80
+        drawerStyle: {
+          width: '82%',
+          backgroundColor: '#fff',
+          paddingTop: 10
         },
+        drawerItemStyle: {
+          borderRadius: 12,
+        },
+        drawerLabelStyle: {
+          fontSize: 18,
+        },
+        drawerInactiveTintColor: '#000',
+        headerTintColor: "#000",
+        headerStyle: {
+          backgroundColor: '#fff',
+        },
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notify")}
+            style={{ marginRight: 10 }}
+          >
+            <IconsOutline.BellIcon
+              color={"#000"}
+              strokeWidth={1.6}
+              size={26}
+            />
+          </TouchableOpacity>
+        ),
+        drawerActiveBackgroundColor: '#000',
+        drawerActiveTintColor: '#fff',
       }}
     >
-      <Tab.Screen
+      <Drawer.Screen
+        name="Dashboard"
         options={{
-          tabBarIcon: ({ focused }) => {
-            return focused ? (
-              <IconsSolid.HomeIcon
-                color={tab_icon_color}
-                size={tab_icon_size}
-              />
-            ) : (
-              <IconsOutline.HomeIcon
-                color={tab_icon_color}
-                size={tab_icon_size}
-              />
-            )
-          }
+          headerShown: false,
+          drawerIcon: ({ focused, size }) => (
+            <IconsOutline.HomeIcon
+              size={size}
+              color={focused ? '#fff' : '#000'}
+              style={{ marginRight: iconSpacing }}
+            />
+          )
         }}
-        name="Dashboard" component={DashboardScreen}
+        component={DashboardScreen}
       />
-      <Tab.Screen
+      <Drawer.Screen name='Attendance' component={AttendanceScreen}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return focused ? (
-              <IconsSolid.IdentificationIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            ) : (
-              <IconsOutline.IdentificationIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            )
-          }
+          drawerIcon: ({ focused, size }) => (
+            <IconsOutline.CalendarIcon
+              size={size}
+              color={focused ? '#fff' : '#000'}
+              style={{ marginRight: iconSpacing }}
+            />
+          )
         }}
-        name="Attendance" component={AttendanceScreen}
       />
-      <Tab.Screen
+      <Drawer.Screen name='Academics' component={AcademicsScreen}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return focused ? (
-              <IconsSolid.AcademicCapIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            ) : (
-              <IconsOutline.AcademicCapIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            )
-          }
+          drawerIcon: ({ focused, size }) => (
+            <IconsOutline.IdentificationIcon
+              size={size}
+              color={focused ? '#fff' : '#000'}
+              style={{ marginRight: iconSpacing }}
+            />
+          )
         }}
-        name="Academics" component={AcademicsScreen}
       />
-      <Tab.Screen
+      <Drawer.Screen name='Fees & Dues' component={FeesDueScreen}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return focused ? (
-              <IconsSolid.BanknotesIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            ) : (
-              <IconsOutline.BanknotesIcon color={tab_icon_color}
-                size={tab_icon_size} />
-            )
-          }
+          drawerIcon: ({ focused, size }) => (
+            <IconsOutline.BanknotesIcon
+              size={size}
+              color={focused ? '#fff' : '#000'}
+              style={{ marginRight: iconSpacing }}
+            />
+          )
         }}
-        name="Fees & Dues " component={FeesDueScreen}
       />
-    </Tab.Navigator>
+      <Drawer.Screen name="Feedback" component={FeedbackScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <IconsOutline.EnvelopeOpenIcon
+              size={size}
+              color={focused ? '#fff' : '#000'}
+              style={{ marginRight: iconSpacing }}
+            />
+          )
+        }}
+      />
+    </Drawer.Navigator>
   );
 }
 
 /** Main App Function */
 export default function App(Props) {
+
+  // Notification Handler
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
+
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  async function registerForPushNotificationsAsync() {
+    let token;
+
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+
+    if (Device.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      // Learn more about projectId:
+      // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
+      token = (await Notifications.getExpoPushTokenAsync({ projectId: '12549414-fedd-4fb1-b180-2241552cd6ed' })).data;
+      console.log(token);
+    } else {
+      //alert('Must use physical device for Push Notifications');
+    }
+
+    return token;
+  }
 
   /** Global States */
   const [userGlobalToken, setUserGlobalToken] = useState(null);
@@ -254,7 +403,7 @@ export default function App(Props) {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <ActivityIndicator size={"large"} color={"grey"} />
         <Text style={{ fontWeight: "bold", fontSize: 16, marginTop: 15 }}>
-          Warming up...
+          Loading...
         </Text>
       </View>
     );
@@ -272,6 +421,7 @@ export default function App(Props) {
       }}
     >
       <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+        <StatusBar style="auto" />
         <GestureHandlerRootView style={{ flex: 1 }}>
           <BottomSheetModalProvider>
             <NavigationContainer>
@@ -296,28 +446,31 @@ export default function App(Props) {
                         headerStyle: { height: 45 },
                         headerShown: false,
                       }}
-                      name="Notify"
+                      name="Login"
                       component={LoginScreen}
                     />
                     <Stack.Group
                       screenOptions={{
-                        presentation: 'modal',
+                        presentation: 'fullScreenModal',
                         headerShown: true,
-                        ...TransitionPresets.ModalSlideFromBottomIOS
+                        ...TransitionPresets.ModalSlideFromBottomIOS,
                       }}
                     >
                       <Stack.Screen
                         name="Forgot Password"
                         component={ForgotPasswordScreen}
                       />
+                      {/* <Stack.Screen name="OTP" component={ConfirmOTPScreen} /> */}
+                      <Stack.Screen name="Change Password" component={ChangePasswordScreen} />
                     </Stack.Group>
                   </>
                 ) : (
                   <>
-                    <Stack.Screen name="Home" component={LoginStack} />
+                    <Stack.Screen name="Dash" options={{ headerShown: false }} component={LoggedInStack} />
                     <Stack.Screen name="Profile" component={ProfileScreen} />
                     <Stack.Screen name="Preferences" component={PreferenceScreen} />
-                    <Stack.Screen name="Notify" component={NotSc} />
+                    <Stack.Screen name="Notify" component={NotifyScreen} />
+                    <Stack.Screen name="Leave Management Form" component={LeaveManagementFormScreen} />
                   </>
                 )}
                 <Stack.Screen name="Developer" component={DeveloperScreen} />

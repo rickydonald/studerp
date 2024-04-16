@@ -9,9 +9,9 @@ import { ChevronRightIcon } from 'react-native-heroicons/outline';
 import HorizontalLine from '../components/HorizontalLine';
 import VerticalLine from '../components/VerticalLine';
 import AcademicList from '../components/AcademicList';
+import { useScrollToTop } from '@react-navigation/native';
 
 export default function AcademicsScreen() {
-
 
   const bottomSheetRefCourseSelection = useRef(null)
   const bottomSheetRefAttendanceManagement = useRef(null)
@@ -86,11 +86,14 @@ export default function AcademicsScreen() {
     },
   ];
 
+  const currentSemesterRef = useRef(null)
+  useScrollToTop(currentSemesterRef)
+
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-      <Header screenName={"Academics & COE"} />
+    <SafeAreaView className="flex-1 bg-white" edges={['bottom']}>
       <View className="flex-1">
         <FlatList
+          ref={currentSemesterRef}
           data={DATA}
           ListHeaderComponent={
             <ScrollView className="flex-1">
@@ -230,9 +233,9 @@ export default function AcademicsScreen() {
               <View style={{ padding: 15 }}>
                 <Text className="uppercase font-semibold mb-1 text-center" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Eligibility</Text>
                 <Text className="font-bold text-center"
-                  style={{ fontSize: 22, color: appleSystemRed }}
+                  style={{ fontSize: 22, color: appleSystemGreen }}
                 >
-                  N/E
+                  E
                 </Text>
               </View>
             </View>

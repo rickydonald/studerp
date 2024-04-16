@@ -1,11 +1,12 @@
 import { View, Text, useWindowDimensions, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 import { appleSystemFillGray10 } from '../src/Config';
 import PaymentCard from '../components/PaymentCard';
 import HorizontalLine from '../components/HorizontalLine';
+import { useNavigation } from '@react-navigation/native';
 
 const All = () => (
   <ScrollView className="flex-1 px-5 py-5">
@@ -63,6 +64,16 @@ const renderScene = SceneMap({
 
 export default function FeesDueScreen() {
 
+  const navigation = useNavigation()
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0,
+      }
+    })
+  }, [])
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
@@ -84,8 +95,7 @@ export default function FeesDueScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-      <Header screenName={"Fees & Dues"} />
+    <SafeAreaView className="flex-1 bg-white" edges={['bottom']}>
       <TabView
         renderTabBar={renderTabBar}
         style={{ backgroundColor: 'white' }}

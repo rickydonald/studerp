@@ -41,3 +41,14 @@ export const appleSystemFillGray7 = "rgb(110, 110, 128)";
 export const appleSystemFillGray8 = "rgb(108, 108, 128)";
 export const appleSystemFillGray9 = "rgb(106, 106, 128)";
 export const appleSystemFillGray10 = "rgb(104, 104, 128)";
+
+
+// Constant URL
+export const apiUrl = "http://192.168.1.29/v1/api";
+
+// All Endpoints
+export class ForgotPasswordEndpoints {
+    static request = apiUrl + "/e/forgot_password/request";
+    static verifyPasscode = apiUrl + "/e/forgot_password/verify_passcode";
+    static resetPassword = apiUrl + "/reset-password";
+}

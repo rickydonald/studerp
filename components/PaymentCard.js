@@ -35,8 +35,8 @@ export default function PaymentCard({ paymentInfo, paymentAmount, buttonText, bu
                 </View>
             </View>
             <TouchableOpacity
-                className="p-2 mt-2"
-                style={{ backgroundColor: !isPaid ? appleSystemBlue : appleSystemGreen, borderRadius: 8 }}
+                className="mt-2"
+                style={{ backgroundColor: !isPaid ? appleSystemBlue : appleSystemGreen, borderRadius: 8, padding: 10 }}
                 onPress={buttonAction}
             >
                 <Text className="text-white font-semibold text-center" style={{ fontSize: 15 }}>

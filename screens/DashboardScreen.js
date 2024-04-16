@@ -1,6 +1,6 @@
 import { View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity, Touchable } from 'react-native'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useNavigation, useScrollToTop } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 
@@ -8,20 +8,16 @@ import { appleSystemBlue, appleSystemFillGray10, appleSystemGrayLight5, appleSys
 import HorizontalLine from '../components/HorizontalLine';
 import PaymentCard from '../components/PaymentCard';
 import RegularCard from '../components/RegularCard';
+import { AuthContext } from '../src/AuthContext';
+import axios from 'axios';
 
 
-export default function DashboardScreen() {
+export default function DashboardScreen(props) {
 
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown: false,
-      headerStyle: {
-        backgroundColor: '#A52A2A',
-      },
-      headerTitleStyle: {
-        color: '#fff',
-      },
+      headerShown: true,
     });
   }, []);
 
@@ -29,22 +25,30 @@ export default function DashboardScreen() {
 
   // Temporary Get Current Hour
   useEffect(() => {
-    fetch('https://mail.sjctni.edu:8085/atte/getcurrenthour.php')
-      .then((response) => {
-        if (response.data === undefined) {
-          setCurrentHour("Nil");
-        } else {
-          setCurrentHour(response.data);
-        }
-      })
-      .catch((error) => console.error(error));
+    axios({
+      method: 'get',
+      url: `https://mail.sjctni.edu:8085/atte/getcurrenthour.php`,
+    })
+    .then(response => response.data)
+    .then(res => {
+      if (res === undefined) {
+        setCurrentHour(0)
+      } else {
+        setCurrentHour(res)
+      }
+    })
   }, [])
 
+  const { signOut, userGlobalData } = useContext(AuthContext)
+
+  const dashboardScollRef = useRef(null)
+  useScrollToTop(dashboardScollRef)
+
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
+    <SafeAreaView className="flex-1 bg-white" edges={['bottom']}>
       {/* Static header */}
-      <Header screenName={"Dashboard"} />
-      <ScrollView className="flex-1" style={{ backgroundColor: appleSystemGrayLight6 }}>
+      {/* <Header screenName={"Dashboard"} /> */}
+      <ScrollView ref={dashboardScollRef} className="flex-1" style={{ backgroundColor: appleSystemGrayLight6 }}>
         {/* Dashboard Card */}
         <View
           className="bg-white py-5 px-5 flex-1"
@@ -52,17 +56,17 @@ export default function DashboardScreen() {
           <View className="flex-row items-center justify-between">
             <View>
               <Text className="font-bold" style={{ fontSize: 25 }}>
-                Ricky Donald
+                { userGlobalData.fullname }
               </Text>
               <Text style={{ fontSize: 18 }} className="text-gray-600 mt-3 font-semibold">
-                21UCS632
+                { userGlobalData.register_number.toUpperCase() }
               </Text>
               <Text style={{ fontSize: 18 }} className="text-gray-600 mt-2 font-semibold">
-                B.Sc. Computer Science
+                { userGlobalData.course_name }
               </Text>
             </View>
             <Image
-              source={{ uri: "https://sjctni.edu/images/SPhotos/21/21ucs632.jpg" }}
+              source={{ uri: `https://sjctni.edu/images/SPhotos/21/${userGlobalData.register_number}.jpg` }}
               width={90}
               height={100}
               className="rounded-xl"
@@ -79,7 +83,7 @@ export default function DashboardScreen() {
             <TouchableOpacity
               className="flex-1"
               style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
-              onPress={() => navigation.navigate('Preferences')}
+              onPress={() => props.navigation.navigate('Preferences')}
             >
               <Text className="text-center font-semibold">Preferences</Text>
             </TouchableOpacity>
@@ -95,7 +99,7 @@ export default function DashboardScreen() {
             </View>
             <View>
               <Text className="text-center uppercase font-semibold mb-1" style={{ fontSize: 11, color: appleSystemFillGray10 }}>Current Shift</Text>
-              <Text className="text-center font-bold" style={{ fontSize: 25 }}>Shift 2</Text>
+              <Text className="text-center font-bold" style={{ fontSize: 25 }}>Shift {userGlobalData.shift}</Text>
             </View>
           </View>
         </View>
@@ -123,19 +127,12 @@ export default function DashboardScreen() {
                 <Text style={attendanceMicroBoxStyle.text}>V</Text>
               </View>
             </View>
-            <TouchableOpacity
-              className="mt-4"
-              style={{ backgroundColor: appleSystemGrayLight5, padding: 10, borderRadius: 10 }}
-              onPress={() => navigation.navigate('Attendance')}
-            >
-              <Text className="text-center font-semibold">Show Attendance</Text>
-            </TouchableOpacity>
           </View>
         </View>
 
         {/* Payments */}
         <RegularCard
-          title={"Fees & Dues"}
+          title={"Pending Fees & Dues"}
           className={"mb-6"}
           content={
             <View>
@@ -158,7 +155,7 @@ export default function DashboardScreen() {
 
         {/* Academics */}
         <RegularCard
-          title={"Academics"}
+          title={"Current Academics"}
           className={"mb-6"}
           content={
             <View>

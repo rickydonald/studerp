@@ -11,7 +11,7 @@ export default function ProfileDataCard({ title, data, titleStyle, dataStyle, st
             >
                 {title}
             </Text>
-            <Text style={[{ fontSize: 22 }, dataStyle]} className={"font-bold " + dataClassname}>
+            <Text style={[{ fontSize: 18 }, dataStyle]} className={"font-bold " + dataClassname}>
                 {data}
             </Text>
         </View >
